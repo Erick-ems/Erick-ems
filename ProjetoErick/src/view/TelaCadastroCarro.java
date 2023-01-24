@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import controll.ControleDados;
@@ -42,7 +43,7 @@ public class TelaCadastroCarro implements ActionListener {
 
 		if (op == 1)
 			s = "Cadastro de Veiculo";
-		if (op == 2)
+		if (op == 3)
 			s = "Detalhe do Veiculo";
 
 		janela = new JFrame(s);
@@ -55,8 +56,8 @@ public class TelaCadastroCarro implements ActionListener {
 			valorEstilo = new JTextField(dados.getCarros()[pos].getEstilo(), 200);
 			valorCategoria = new JTextField(dados.getCarros()[pos].getCategoria(), 200);
 			valorQuilometragem = new JTextField(dados.getCarros()[pos].getQuilometragem(), 200);
-			valorPreco = new JTextField(dados.getCarros()[pos].getPreco(),200);
-			valorAno = new JTextField(dados.getCarros()[pos].getAno());
+			valorPreco = new JTextField(dados.getCarros()[pos].getPreco(), 200);
+			valorAno = new JTextField(String.valueOf(dados.getCarros()[pos].getAno()), 10);
 
 		} else {
 			valorNome = new JTextField(200);
@@ -65,7 +66,7 @@ public class TelaCadastroCarro implements ActionListener {
 			valorCategoria = new JTextField(200);
 			valorQuilometragem = new JTextField(200);
 			valorPreco = new JTextField(200);
-			valorAno = new JTextField();
+			valorAno = new JTextField(10);
 
 			botaoSalvar.setBounds(245, 175, 115, 30);
 
@@ -116,45 +117,89 @@ public class TelaCadastroCarro implements ActionListener {
 		janela.setLocationRelativeTo(null);
 
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if (src == botaoSalvar) {
+			try {
+				boolean res = true;
+				if (opcao == 1)
+					novoDado[0] = Integer.toString(dados.getQtdCarros());
+				else
+					novoDado[0] = Integer.toString(posicao);
 
-			boolean res;
-			if (opcao == 1)
-				novoDado[0] = Integer.toString(dados.getQtdCarros());
-			else
-				novoDado[0] = Integer.toString(posicao);
+				novoDado[1] = valorNome.getText();
+				novoDado[2] = valorAno.getText();
+				novoDado[3] = valorMarca.getText();
+				novoDado[4] = valorEstilo.getText();
+				novoDado[5] = valorCategoria.getText();
+				novoDado[6] = valorQuilometragem.getText();
+				novoDado[7] = valorPreco.getText();
 
-			novoDado[1] = valorNome.getText();
-			novoDado[2] = valorMarca.getText();
-			novoDado[3] = valorEstilo.getText();
-			novoDado[4] = valorCategoria.getText();
-			novoDado[5] = valorQuilometragem.getText();
-			novoDado[6] = valorAno.getText();
 
-			res = dados.inserirEditarCarro(novoDado);
+				System.out.println(novoDado[1]);
+				System.out.println(novoDado[2]);
+				System.out.println(novoDado[3]);
+				System.out.println(novoDado[4]);
+				System.out.println(novoDado[5]);
+				System.out.println(novoDado[6]);
+				System.out.println(novoDado[7]);
 
+				
+				
+				
 			if (res) {
-				System.out.println("Carro cadastrado");
-			} else {
-				System.out.println("Erro");
+				mensagemSucessoCadastro();
+			} else
+				mensagemErroCadastro();
+			
+			
+			
+			
+			} catch (NullPointerException exc1) {
+				mensagemErroCadastro();
+			}catch (NumberFormatException exc2) {
+				mensagemErroCadastro();
 			}
-
 		}
-
 		if (src == botaoExcluir) {
 			boolean res = false;
 
 			res = dados.removerCarro(posicao);
-			if (res)
+			if (res) {
 				System.out.println("Carro Apagado");
-
-
-			System.out.println("Erro");
-
+			} else {
+				System.out.println("Erro");
+			}
 		}
+
 	}
+
+	public void mensagemSucessoExclusao() {
+		JOptionPane.showMessageDialog(null, "Os dados foram excluidos com sucesso!", null,
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+	}
+
+	public void mensagemSucessoCadastro() {
+		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null,
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+	}
+
+	public void mensagemErroCadastro() {
+		JOptionPane.showMessageDialog(null,
+				"ERRO AO SALVAR OS DADOS!\n " + "Pode ter ocorrido um dos dois erros a seguir:  \n"
+						+ "1. Nem todos os campos foram preenchidos \n"
+						+ "2. CPF, identidade, DDD e telefone n�o cont�m apenas n�meros",
+				null, JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void mensagemErroExclusaoCarro() {
+		JOptionPane.showMessageDialog(null,
+				"Ocorreu um erro ao excluir o dado.\n " + "Verifique se o aluno est� matriculado\n"
+						+ "em alguma disciplina. Se sim, cancele\n " + "a matricula e tente novamente.",
+				null, JOptionPane.ERROR_MESSAGE);
+	}
+
 }

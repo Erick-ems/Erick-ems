@@ -8,7 +8,7 @@ public class Dados {
 	public void fillWithSomeData() {
 
 		for (int i = 0; i < 5; i++) {
-			carros[i] = new Carro("A4", "Audi", "seda", "esportivo", "900000", "190000", 2008);
+			carros[i] = new Carro("A4", 2008, "seda", "esportivo", "900000", "190000", "Audi");
 		}
 
 		qtdCarros = 1;

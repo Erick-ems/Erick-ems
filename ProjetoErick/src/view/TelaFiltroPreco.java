@@ -28,7 +28,7 @@ public class TelaFiltroPreco implements ListSelectionListener {
 
 		titulo.setBounds(230, 10, 250, 30);
 		listaCarrosCadastrados.setBounds(115, 50, 350, 120);
-		listaCarrosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listaCarrosCadastrados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		listaCarrosCadastrados.setVisibleRowCount(10);
 
 		janela.setLayout(null);

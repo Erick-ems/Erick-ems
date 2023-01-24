@@ -32,7 +32,7 @@ public class TelaListaCarros implements ActionListener, ListSelectionListener {
 		janela = new JFrame("CARROS");
 		titulo = new JLabel("Carros");
 		cadastroCarro = new JButton("Cadastrar");
-		refreshCarro = new JButton("BUSCAR");
+		refreshCarro = new JButton("ATUALIZAR");
 
 		titulo.setBounds(275, 10, 250, 30);
 		listaCarrosCadastrados.setBounds(115, 50, 350, 120);
@@ -60,7 +60,20 @@ public class TelaListaCarros implements ActionListener, ListSelectionListener {
 
 	}
 
-	public void actionPerfomed(ActionEvent e) {
+	
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		Object src = e.getSource();
+
+		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
+			new TelaCadastroCarro().inserirEditar(3, dados, this, listaCarrosCadastrados.getSelectedIndex());
+			listaCarrosCadastrados.updateUI();
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 
 		// Cadastro de Carros
@@ -70,29 +83,11 @@ public class TelaListaCarros implements ActionListener, ListSelectionListener {
 		}
 		if (src == refreshCarro) {
 			listaCarrosCadastrados.setListData(new ControleCarro(dados).getNomeCarro());
-		}
-	}
-
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		Object src = e.getSource();
-
-		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
-			new TelaCadastroCarro().inserirEditar(3, dados, this, listaCarrosCadastrados.getSelectedIndex());
-		}
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
-		if (src == cadastroCarro) {
-			new TelaCadastroCarro().inserirEditar(1, dados, this, 0);
-		}
-		if (src == refreshCarro) {
-			listaCarrosCadastrados.setListData(new ControleCarro(dados).getNomeCarro());
 			listaCarrosCadastrados.updateUI();
 		}
-
+		
 	}
+
+
 
 }

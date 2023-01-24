@@ -10,8 +10,8 @@ public class Carro {
 	private String quilometragem;
 	private String preco;
 
-	public Carro(String nome, String marca, String estilo, String categoria, String quilometragem, String preco,
-			int ano) {
+	public Carro(String nome, int ano, String estilo, String categoria, String quilometragem, String preco,
+			String marca) {
 		this.nome = nome;
 		this.ano = ano;
 		this.marca = marca;
