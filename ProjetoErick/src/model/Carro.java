@@ -1,82 +1,98 @@
 package model;
 
-
-
 public class Carro {
 
-    private String nome;
-    private int ano;
-    private String marca;
-    private String estilo;
-    private String categoria;
-    private String quilometragem;
+	private String nome;
+	private int ano;
+	private String marca;
+	private String estilo;
+	private String categoria;
+	private String quilometragem;
+	private String preco;
 
-    public Carro(String nome, int ano, String marca, String estilo, String categoria, String quilometragem) {
-        this.nome = nome;
-        this.ano = ano;
-        this.marca = marca;
-        this.estilo = estilo;
-        this.categoria = categoria;
-        this.quilometragem = quilometragem;
-    }
+	public Carro(String nome, String marca, String estilo, String categoria, String quilometragem, String preco,
+			int ano) {
+		this.nome = nome;
+		this.ano = ano;
+		this.marca = marca;
+		this.estilo = estilo;
+		this.categoria = categoria;
+		this.quilometragem = quilometragem;
+		this.preco = preco;
 
-    public String getNome() {
-        return nome;
-    }
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void Carro1(String nome, String marca, String quilometragem, String estilo, String categoria, String preco,
+			int ano) {
+		this.nome = nome;
+		this.ano = ano;
+		this.marca = marca;
+		this.estilo = estilo;
+		this.categoria = categoria;
+		this.preco = preco;
+		this.quilometragem = quilometragem;
+	}
 
-    public int getAno() {
-        return ano;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getMarca() {
-        return marca;
-    }
+	public int getAno() {
+		return ano;
+	}
 
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
 
-    public String getEstilo() {
-        return estilo;
-    }
+	public String getMarca() {
+		return marca;
+	}
 
-    public void setEstilo(String estilo) {
-        this.estilo = estilo;
-    }
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
 
-    public String getCategoria() {
-        return categoria;
-    }
+	public String getEstilo() {
+		return estilo;
+	}
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+	public void setEstilo(String estilo) {
+		this.estilo = estilo;
+	}
 
-    public String getQuilometragem() {
-        return quilometragem;
-    }
+	public String getCategoria() {
+		return categoria;
+	}
 
-    public void setQuilometragem(String quilometragem) {
-        this.quilometragem = quilometragem;
-    }
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 
-    @Override
-    public String toString() {
-        return "Carro{" +
-                "nome='" + nome + '\'' +
-                ", ano=" + ano +
-                ", marca='" + marca + '\'' +
-                ", estilo='" + estilo + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", quilometragem='" + quilometragem + '\'' +
-                '}';
-    }
+	public String getQuilometragem() {
+		return quilometragem;
+	}
+
+	public void setQuilometragem(String quilometragem) {
+		this.quilometragem = quilometragem;
+	}
+
+	public String getPreco() {
+		return preco;
+	}
+
+	public void setPreco(String preco) {
+		this.preco = preco;
+	}
+
+	@Override
+	public String toString() {
+		return "Carro{" + "nome='" + nome + '\'' + ", ano=" + ano + ", marca='" + marca + '\'' + ", estilo='" + estilo
+				+ '\'' + ", categoria='" + categoria + '\'' + ", quilometragem='" + quilometragem + '\'' + ", preco="
+				+ preco + "\" " + '}';
+	}
 }

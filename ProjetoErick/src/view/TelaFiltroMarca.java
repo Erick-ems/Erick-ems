@@ -1,86 +1,81 @@
 package view;
 
-import java.awt.Color;
-
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controll.*;
-
-
-
-
+import controll.ControleCarro;
+import controll.ControleDados;
 
 public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 
-	public static Color c1 = new Color(245,245,220), c2 = new Color(139,0,0); 
-	private static ControleDados cm = new ControleDados();
-	private JFrame janela = new JFrame("MARCAS");
-	private JLabel titulo = new JLabel("MARCAS");
-	private JButton telaInicial = new JButton("Voltar");
-	private JList<String> marcas;
-	
-		
-	
-	TelaFiltroMarca(){
-		
-		marcas = new JList<String>(new ControleMarcas(cm). getListaMarcas());
-		marcas.setBounds(100, 50, 250, 250);
-		marcas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		marcas.setVisibleRowCount(10);
-		marcas.addListSelectionListener(this);
-		marcas.setFont(new Font("Calibri Light", Font.PLAIN, 20));
+	private JFrame janela;
+	private JLabel titulo;
+	private static ControleDados dados;
+	private JList<String> listaCarrosCadastrados;
+	private String[] listaCarros = new String[50];
+	private JTextField pesquisa = new JTextField("Buscar Marca");
+	private JButton buscar = new JButton("Buscar");
 
-		
-		
-		
-		
-		
-		telaInicial.setBounds(180, 320, 90, 30);
-		telaInicial.addActionListener(this);
-		
-		titulo.setBounds(180, 20, 200, 30);
-		titulo.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-		
-		
-		
-		
-		
+	public void mostrarDados(ControleDados d, int op) {
+		dados = d;
+
+		listaCarros = new ControleCarro(dados).getMarcaCarro();
+		listaCarrosCadastrados = new JList<>(listaCarros);
+		janela = new JFrame("MARCAS");
+		titulo = new JLabel("MARCAS");
+
+		titulo.setBounds(275, 10, 250, 30);
+		listaCarrosCadastrados.setBounds(115, 50, 350, 120);
+		listaCarrosCadastrados.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		listaCarrosCadastrados.setVisibleRowCount(10);
+
+		pesquisa.setBounds(210, 190, 160, 30);
+
+		buscar.setBounds(240, 250, 100, 40);
+
 		janela.setLayout(null);
-		janela.add(telaInicial);
-		janela.add(marcas);
+
 		janela.add(titulo);
-		janela.setSize(500, 400);
-		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.add(listaCarrosCadastrados);
+		janela.add(pesquisa);
+		janela.add(buscar);
+		janela.setSize(600, 400);
 		janela.setVisible(true);
-		janela.getContentPane().setBackground(c1);
+
+		listaCarrosCadastrados.addListSelectionListener(this);
+		listaCarrosCadastrados.setVisible(true);
+		buscar.addActionListener(this);
+
 		janela.setLocationRelativeTo(null);
-		janela.setResizable(false);
+
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
-		if(src == telaInicial) {
-			new TelaInicial();
-		}
-			
-		
-	}
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 
-		if(e.getValueIsAdjusting() && src == marcas) {
-			new TelaListaCarros();
+		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
+			new TelaListaCarros().mostrarDados(dados, 1);
 		}
-	
-}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+
+		if (src == buscar) {
+			listaCarrosCadastrados.updateUI();
+			listaCarrosCadastrados.setVisible(true);
+		}
+	}
+
 }

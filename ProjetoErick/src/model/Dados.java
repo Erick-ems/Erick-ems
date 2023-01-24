@@ -1,29 +1,40 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Dados {
-	private List<Marca> marca = new ArrayList<Marca>();
 
+	private Carro[] carros = new Carro[9999];
+	private int qtdCarros = 0;
 
-	public void cadastrosProntos() {
-		marca.add(new Marca("AUDI"));
-		marca.add(new Marca("BMW"));
-		marca.add(new Marca("FIAT"));
-		marca.add(new Marca("FORD"));
-		marca.add(new Marca("KIA"));
-		marca.add(new Marca("NISSAN"));
-		marca.add(new Marca("PEUGEOT"));
-		marca.add(new Marca("VOLKSWAGEN"));
-		marca.add(new Marca("TOYOTA"));
-		marca.add(new Marca("TESLA"));
+	public void fillWithSomeData() {
+
+		for (int i = 0; i < 5; i++) {
+			carros[i] = new Carro("A4", "Audi", "seda", "esportivo", "900000", "190000", 2008);
+		}
+
+		qtdCarros = 1;
+
 	}
-	
-	public List<Marca> getMarca(){
-		return marca;
+
+	public Carro[] getCarros() {
+		return carros;
 	}
-	public void setMarca(List<Marca> marca) {
-		this.marca = marca;
+
+	public void setCarros(Carro[] carros) {
+		this.carros = carros;
 	}
+
+	public void inserirEditarCarro(Carro c, int pos) {
+		this.carros[pos] = c;
+		if (pos == qtdCarros)
+			qtdCarros++;
+	}
+
+	public int getQtdCarros() {
+		return qtdCarros;
+	}
+
+	public void setQtdCarros(int qtdCarros) {
+		this.qtdCarros = qtdCarros;
+	}
+
 }

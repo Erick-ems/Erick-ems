@@ -1,16 +1,16 @@
 package controll;
 
-
-import java.util.List;
-
-import model.*;
+import model.Carro;
+import model.Dados;
 
 public class ControleDados {
 	private Dados d = new Dados();
+
 	public ControleDados() {
-		d.cadastrosProntos();
+		d.fillWithSomeData();
+
 	}
-	
+
 	public Dados getDados() {
 		return d;
 	}
@@ -18,8 +18,50 @@ public class ControleDados {
 	public void setDados(Dados d) {
 		this.d = d;
 	}
-	
-	public List<Marca> getMarca() {
-		return this.d.getMarca();
+
+	public Carro[] getCarros() {
+		return this.d.getCarros();
 	}
+
+	public int getQtdCarros() {
+		return this.d.getQtdCarros();
+	}
+
+	public boolean inserirEditarCarro(String[] dadosCarros) {
+
+		Carro c = new Carro(dadosCarros[1], dadosCarros[2], dadosCarros[3], dadosCarros[4], dadosCarros[5],
+				dadosCarros[6], Integer.parseInt(dadosCarros[7]));
+		Carro a = new Carro("Enzo", "Ferrari", "hatch", "esportivo", "911212", "10", 9000);
+
+		d.inserirEditarCarro(c, Integer.parseInt(dadosCarros[0]));
+		d.inserirEditarCarro(a, Integer.parseInt(dadosCarros[0]));
+		return true;
+
+	}
+
+	public boolean removerCarro(int i) {
+
+		String carroRemovido = d.getCarros()[i].getNome();
+
+		if (i == (d.getQtdCarros() - 1)) {
+			d.setQtdCarros(d.getQtdCarros() - 1);
+			d.getCarros()[d.getQtdCarros()] = null;
+			return true;
+		} else {
+			int cont = 0;
+			while (d.getCarros()[cont].getNome().compareTo(carroRemovido) != 0) {
+				cont++;
+			}
+
+			for (int j = cont; j < d.getQtdCarros() - 1; j++) {
+				d.getCarros()[j] = null;
+				d.getCarros()[j] = d.getCarros()[j + 1];
+			}
+			d.getCarros()[d.getQtdCarros()] = null;
+			d.setQtdCarros(d.getQtdCarros() - 1);
+			return true;
+
+		}
+	}
+
 }
