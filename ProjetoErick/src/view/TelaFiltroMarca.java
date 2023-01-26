@@ -25,11 +25,11 @@ public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 	private JTextField pesquisa = new JTextField("Buscar Marca");
 	private JButton buscar = new JButton("Buscar");
 
-	public void mostrarDados(ControleDados d, int op) {
+	public void mostrarDados(ControleDados d) {
 		dados = d;
 
 		listaCarros = new ControleCarro(dados).getMarcaCarro();
-		listaCarrosCadastrados = new JList<>(listaCarros);
+		listaCarrosCadastrados = new JList<String>(listaCarros);
 		janela = new JFrame("MARCAS");
 		titulo = new JLabel("MARCAS");
 
@@ -64,7 +64,7 @@ public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
-			new TelaListaCarros().mostrarDados(dados, 1);
+			new TelaListaCarros().mostrarDados(dados);
 		}
 	}
 
@@ -73,8 +73,9 @@ public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if (src == buscar) {
+			listaCarrosCadastrados.setListData(new ControleCarro(dados).getMarcaCarro());
 			listaCarrosCadastrados.updateUI();
-			listaCarrosCadastrados.setVisible(true);
+
 		}
 	}
 

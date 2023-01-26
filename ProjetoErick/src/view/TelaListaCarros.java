@@ -24,11 +24,11 @@ public class TelaListaCarros implements ActionListener, ListSelectionListener {
 	private JList<String> listaCarrosCadastrados;
 	private String[] listaCarros = new String[50];
 
-	public void mostrarDados(ControleDados d, int op) {
+	public void mostrarDados(ControleDados d) {
 		dados = d;
-
+		
 		listaCarros = new ControleCarro(dados).getNomeCarro();
-		listaCarrosCadastrados = new JList<>(listaCarros);
+		listaCarrosCadastrados = new JList<String>(listaCarros);
 		janela = new JFrame("CARROS");
 		titulo = new JLabel("Carros");
 		cadastroCarro = new JButton("Cadastrar");
@@ -60,20 +60,16 @@ public class TelaListaCarros implements ActionListener, ListSelectionListener {
 
 	}
 
-	
-
-	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 
 		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
 			new TelaCadastroCarro().inserirEditar(3, dados, this, listaCarrosCadastrados.getSelectedIndex());
-			listaCarrosCadastrados.updateUI();
 		}
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		Object src = e.getSource();
 
 		// Cadastro de Carros
@@ -85,9 +81,7 @@ public class TelaListaCarros implements ActionListener, ListSelectionListener {
 			listaCarrosCadastrados.setListData(new ControleCarro(dados).getNomeCarro());
 			listaCarrosCadastrados.updateUI();
 		}
-		
+
 	}
-
-
 
 }

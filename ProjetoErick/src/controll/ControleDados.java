@@ -28,21 +28,12 @@ public class ControleDados {
 	}
 
 	public boolean inserirEditarCarro(String[] dadosCarros) {
-
-		if(!dadosCarros[2].matches("[0-9]")) {
-			return false;
-		}else {
-		
-		
-		Carro c = new Carro(dadosCarros[1], Integer.parseInt(dadosCarros[2]), dadosCarros[3], dadosCarros[4], dadosCarros[5],
+			Carro c = new Carro(dadosCarros[1], Integer.parseInt(dadosCarros[2]), dadosCarros[3], dadosCarros[4], dadosCarros[5],
 				dadosCarros[6],dadosCarros[7]);
-
-		d.inserirEditarCarro(c, Integer.parseInt(dadosCarros[0]));
-
-		return true;
+			d.inserirEditarCarro(c, Integer.parseInt(dadosCarros[0]));
+			return true;
 
 	}
-		}
 
 	public boolean removerCarro(int i) {
 

@@ -49,7 +49,7 @@ public class TelaFiltroPreco implements ListSelectionListener {
 		Object src = e.getSource();
 
 		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
-			new TelaListaCarros().mostrarDados(dados, 1);
+			new TelaListaCarros().mostrarDados(dados);
 		}
 	}
 

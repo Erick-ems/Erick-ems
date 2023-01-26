@@ -52,6 +52,10 @@ public class ControleCarro {
 		return c[i].getNome();
 	}
 
+	public String getAno(int i) {
+		String numAno = String.valueOf(c[i].getAno());
+		return numAno;
+	}
 	public String getMarca(int i) {
 		return c[i].getMarca();
 	}
@@ -72,10 +76,6 @@ public class ControleCarro {
 		return c[i].getPreco();
 	}
 
-	public String getAno(int i) {
-		String numAno = String.valueOf(c[i].getAno());
-		return numAno;
-	}
 
 	public void setQtdCarros(int qtdCarros) {
 		this.qtdCarros = qtdCarros;

@@ -22,15 +22,15 @@ public class Carro {
 
 	}
 
-	public void Carro1(String nome, String marca, String quilometragem, String estilo, String categoria, String preco,
-			int ano) {
+	public void Carro1(String nome, int ano, String estilo, String categoria, String quilometragem, String preco,
+			String marca) {
 		this.nome = nome;
 		this.ano = ano;
 		this.marca = marca;
 		this.estilo = estilo;
 		this.categoria = categoria;
-		this.preco = preco;
 		this.quilometragem = quilometragem;
+		this.preco = preco;
 	}
 
 	public String getNome() {

@@ -10,8 +10,10 @@ public class Dados {
 		for (int i = 0; i < 5; i++) {
 			carros[i] = new Carro("A4", 2008, "seda", "esportivo", "900000", "190000", "Audi");
 		}
+		
 
-		qtdCarros = 1;
+
+		qtdCarros = 5;
 
 	}
 

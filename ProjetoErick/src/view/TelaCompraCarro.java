@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 import controll.ControleDados;
 
-public class TelaCadastroCarro implements ActionListener {
+public class TelaCompraCarro implements ActionListener {
 
 	private JFrame janela;
 	private JLabel labelNome = new JLabel("Nome: ");
@@ -74,7 +74,7 @@ public class TelaCadastroCarro implements ActionListener {
 
 		labelNome.setBounds(90, 20, 150, 25);
 		valorNome.setBounds(210, 20, 180, 25);
-
+		
 		
 		labelAno.setBounds(90, 50, 180, 25);
 		valorAno.setBounds(210, 50, 180, 25);
@@ -124,6 +124,8 @@ public class TelaCadastroCarro implements ActionListener {
 		botaoExcluir.addActionListener(this);
 
 		janela.setLocationRelativeTo(null);
+		
+		valorNome.setEditable(false);
 
 	}
 
