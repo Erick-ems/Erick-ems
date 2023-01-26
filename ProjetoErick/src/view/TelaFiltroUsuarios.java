@@ -48,12 +48,12 @@ public class TelaFiltroUsuarios implements ActionListener {
         
         // Define as configurações da janela
         janela.setSize(600, 400);
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setVisible(true);
         janela.setLocale(null);
     	janela.setLocationRelativeTo(null);
         
-		
+    	janela.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 	}
 	@Override
 	 public void actionPerformed(ActionEvent e) {

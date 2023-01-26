@@ -12,10 +12,11 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+
 import controll.ControleCarro;
 import controll.ControleDados;
 
-public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
+public class TelaFiltroMarca implements ListSelectionListener {
 
 	private JFrame janela;
 	private JLabel titulo;
@@ -23,7 +24,6 @@ public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 	private JList<String> listaCarrosCadastrados;
 	private String[] listaCarros = new String[50];
 	private JTextField pesquisa = new JTextField("Buscar Marca");
-	private JButton buscar = new JButton("Buscar");
 
 	public void mostrarDados(ControleDados d) {
 		dados = d;
@@ -40,20 +40,17 @@ public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 
 		pesquisa.setBounds(210, 190, 160, 30);
 
-		buscar.setBounds(240, 250, 100, 40);
 
 		janela.setLayout(null);
 
 		janela.add(titulo);
 		janela.add(listaCarrosCadastrados);
 		janela.add(pesquisa);
-		janela.add(buscar);
 		janela.setSize(600, 400);
 		janela.setVisible(true);
 
 		listaCarrosCadastrados.addListSelectionListener(this);
 		listaCarrosCadastrados.setVisible(true);
-		buscar.addActionListener(this);
 
 		janela.setLocationRelativeTo(null);
 
@@ -64,19 +61,11 @@ public class TelaFiltroMarca implements ActionListener, ListSelectionListener {
 		Object src = e.getSource();
 
 		if (e.getValueIsAdjusting() && src == listaCarrosCadastrados) {
-			new TelaListaCarros().mostrarDados(dados);
+			new TelaListaCarros2().mostrarDados(dados);
 		}
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		Object src = e.getSource();
+	
 
-		if (src == buscar) {
-			listaCarrosCadastrados.setListData(new ControleCarro(dados).getMarcaCarro());
-			listaCarrosCadastrados.updateUI();
-
-		}
-	}
 
 }

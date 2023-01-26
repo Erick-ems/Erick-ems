@@ -1,14 +1,22 @@
 package controll;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 import model.Carro;
 
 public class ControleCarro {
 	private Carro[] c;
 	private int qtdCarros;
-
+	private List<Carro> listaCarros;
+	private List<Integer> posicao = new ArrayList<>();
+	
 	public ControleCarro(ControleDados d) {
 		c = d.getCarros();
 		qtdCarros = d.getQtdCarros();
+
 	}
 
 	public String[] getMarcaCarro() {
@@ -39,6 +47,9 @@ public class ControleCarro {
 
 		return v;
 	}
+	
+	
+	
 
 	public int getQtd() {
 		return qtdCarros;
